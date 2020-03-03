@@ -9,3 +9,6 @@ class Graph:
 
     def add_vertex(self, vertex):
         self.vertices.append(vertex)
+
+    def get_vertex_count(self):
+        return len(self.vertices)
