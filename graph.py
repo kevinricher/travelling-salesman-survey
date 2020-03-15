@@ -1,4 +1,4 @@
-import sys
+# import sys
 
 
 class Vertex:
@@ -43,13 +43,13 @@ class Graph:
             return None
 
     def add_edge(self, vertex1, vertex2, weight=0):
-        if vertex1 in vertices and vertex2 in vertices:
-            vertex1.add_neighbour(new_neighbour, weight)
-            vertex2.add_neighbour(new_neighbour, weight)
+        if vertex1 in self.vertices and vertex2 in self.vertices:
+            vertex1.add_neighbour(vertex2, weight)
+            vertex2.add_neighbour(vertex1, weight)
         else:
             return
 
-    def remove_edge(self):
-        if vertex1 in vertices and vertex2 in vertices:
+    def remove_edge(self, vertex1, vertex2):
+        if vertex1 in self.vertices and vertex2 in self.vertices:
             vertex1.remove_neighbour(vertex2)
             vertex2.remove_neighbour(vertex1)
