@@ -2,4 +2,5 @@
 pytest
 
 # Auto-formatting and completion for Emacs
+jedi
 autopep8
