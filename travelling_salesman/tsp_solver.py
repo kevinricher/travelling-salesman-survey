@@ -1,7 +1,7 @@
 import itertools
-import TSP_Plot
-from Point import Point
-from PointGrid import PointGrid
+import tsp_plot
+from point import Point
+from point_grid import PointGrid
 
 
 class TSP_Solver:

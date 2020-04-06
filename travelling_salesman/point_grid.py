@@ -1,6 +1,6 @@
-from Point import Point
+from point import Point
 import random
-from TSP_Errors import PointGenerationError
+from tsp_errors import PointGenerationError
 
 
 class PointGrid:

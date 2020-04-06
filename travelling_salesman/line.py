@@ -1,4 +1,4 @@
-from Point import Point
+from point import Point
 import math
 
 
