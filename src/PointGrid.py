@@ -4,9 +4,10 @@ from TSP_Errors import PointGenerationError
 
 
 class PointGrid:
-    def __init__(self, max_coord, point_count):
+    def __init__(self, max_coord, point_count, seed=41):
         self.max_coord = max_coord
         self.point_count = point_count
+        self.seed = seed
         self.points = []
         self._generate_grid_points()
 
@@ -19,12 +20,14 @@ class PointGrid:
     def _add_point(self, point):
         self.points.append(point)
 
-    def _generate_point(self):
+    def _generate_point(self, point_number):
         # Try 100 times to generate a new valid point.
         i = 0
         while(i < 100):
-            point = Point(random.randint(0, self.max_coord),
-                          random.randint(0, self.max_coord))
+            # Use seed to get repeatable results.
+            random.seed(point_number*self.seed)
+            point = Point(random.randrange(self.max_coord),
+                          random.randrange(self.max_coord))
             if self._contains_point(point):
                 i = i + 1
                 continue
@@ -37,5 +40,5 @@ class PointGrid:
             "Failed to generate new point too many times.")
 
     def _generate_grid_points(self):
-        for i in range(0, 100):
-            self._generate_point()
+        for i in range(0, self.point_count):
+            self._generate_point(i+1)

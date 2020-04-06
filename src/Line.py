@@ -27,7 +27,6 @@ class LineSegment:
     def overlaps_with_segment(self, segment):
         if not self.parallel_to_segment(segment):
             return False
-        if self.contains_point(segment.p1)
         if self.contains_point(segment.p1) or self.contains_point(segment.p2):
             return True
         else:
