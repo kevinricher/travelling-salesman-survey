@@ -40,7 +40,7 @@ class TSP_Solver:
         "Append each nearest city to form a tour."
         start = self.first(self.instance.points)
         tour = [start]
-        unvisited = ({self.instance.points} - {start})
+        unvisited = (frozenset(self.instance.points) - {start})
         while unvisited:
             C = self._find_nearest_neighbour(tour[-1], unvisited)
             tour.append(C)
