@@ -28,19 +28,23 @@ class TSP_Solver:
         print("First vertex: {}.".format(start))
         return [[start] + list(rest) for rest in itertools.permutations(frozenset(self.instance.points) - {start})]
 
+    def shortest_tour(self, tours):
+        return min(tours, key=self.tour_length)
+
     def brute_force(self):
         "Check all tours."
         all_tours = self.get_all_tours()
-        return min(all_tours, key=self.tour_length)
+        return self.shortest_tour(all_tours)
 
     # Nearest neighbour methods.
     @staticmethod
     def _find_nearest_neighbour(key_point, points):
         return min(points, key=lambda c: Point.distance(c, key_point))
 
-    def nearest_neighbour(self):
+    def nearest_neighbour(self, start=None):
         "Append each nearest city to form a tour."
-        start = self.first(self.instance.points)
+        if start is None:
+            start = self.first(self.instance.points)
         tour = [start]
         unvisited = set(frozenset(self.instance.points) - {start})
         while unvisited:
@@ -71,4 +75,17 @@ class TSP_Solver:
                 return self.alter_tour(tour)
             return tour
 
-    # Christofides algorithm methods.
+    def altered_nearest_neighbour(self):
+        "Run nearest neighbor TSP algorithm, and alter the results by reversing segments."
+        return self.alter_tour(self.nearest_neighbour())
+
+    @staticmethod
+    def all_segments(N):
+        "Return (start, end) pairs of indexes that form segments of tour of length N."
+        return [(start, start + length)
+                for length in range(N, 2-1, -1)
+                for start in range(N - length + 1)]
+
+    # Repeated nearest neighbour methods.
+    def repeated_nearest_neighbour():
+        pass

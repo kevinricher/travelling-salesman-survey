@@ -5,7 +5,7 @@ import time
 
 def main():
     print("Running main:")
-    solver = TSP_Solver(100, 10)
+    solver = TSP_Solver(100, 11)
     t0 = time.clock()
     brute_force_solution = solver.brute_force()
     t1 = time.clock()
@@ -23,6 +23,17 @@ def main():
     print("Nearest neighbour solution length: {}.".format(
         nn_solution_length))
     print("Found tour by nearest neighbour in {:.3f} seconds.".format(t1-t0))
+    # plot_tour(nn_solution)
+
+    t0 = time.clock()
+    altered_nn_solution = solver.altered_nearest_neighbour()
+    t1 = time.clock()
+    altered_nn_solution_length = solver.tour_length(altered_nn_solution)
+    print("Nearest neighbour solution: {}.".format(altered_nn_solution))
+    print("Nearest neighbour solution length: {}.".format(
+        altered_nn_solution_length))
+    print(
+        "Found tour by altered nearest neighbour in {:.3f} seconds.".format(t1-t0))
     # plot_tour(nn_solution)
 
 
