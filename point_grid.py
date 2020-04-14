@@ -25,7 +25,7 @@ class PointGrid:
         i = 0
         while(i < 100):
             # Use seed to get repeatable results.
-            random.seed(point_number*self.seed)
+            random.seed(point_number*(i+1)*self.seed)
             point = Point(random.randrange(self.max_coord),
                           random.randrange(self.max_coord))
             if self._contains_point(point):

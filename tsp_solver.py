@@ -70,7 +70,7 @@ class TSP_Solver:
         random.seed(len(self.instance.points) * sample_count * seed)
         return random.sample(self.instance.points, sample_count)
 
-    def repeated_nearest_neighbour(self, repititions=100):
+    def repeated_nearest_neighbour(self, repititions=500):
         "Use different start points, return shortest."
         if repititions > len(self.instance.points):
             repititions = len(self.instance.points)
